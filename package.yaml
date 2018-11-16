@@ -1,5 +1,5 @@
 name:                dynloader
-version:             0.1.0.0
+version:             0.1.0
 github:              "taqenoqo/dynloader"
 license:             BSD3
 author:              "Taqenoqo"
@@ -15,13 +15,12 @@ description:         This is a simple library for dynamically loading other pack
                      Please see the README on GitHub at <https://github.com/taqenoqo/dynloader#readme>
 
 dependencies:
-- base >= 4.7 && < 5
+- base >= 4.9 && < 5
+- ghc >= 8.4 && < 8.7
+- ghc-paths >= 0.1 && < 0.2
 
 library:
   source-dirs: src
-  dependencies:
-  - ghc
-  - ghc-paths
 
 tests:
   dynloader-test:
