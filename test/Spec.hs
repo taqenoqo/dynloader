@@ -1,5 +1,4 @@
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE Rank2Types #-}
 
 import System.Plugins.Dynloader
 import Test.Hspec
@@ -19,12 +18,21 @@ main = hspec $ do
 
         `shouldReturn` 3
 
-  describe "load" $
+  describe "load" $ do
     it "can return Prelude data wraped in Dynamic"  $
       do
         dyn <- load [] ["Prelude"] "Just True"
         let value = fromJust $ fromDynamic dyn
-        return $ value
+        return value
 
         `shouldReturn` Just True
+
+    it "can load Prelude function wraped in Dynamic"  $
+      do
+        dyn <- load [] ["Prelude"] "(+):: Int -> Int -> Int"
+        let (plus :: Int -> Int -> Int) = fromJust $ fromDynamic dyn
+        return $ plus 1 2
+
+        `shouldReturn` 3
+
 
